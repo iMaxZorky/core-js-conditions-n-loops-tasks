@@ -63,8 +63,10 @@ function getMaxNumber(a, b, c) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  if (queen.x === king.x || queen.y === king.y) return true;
+  if (Math.abs(queen.x - king.x) === Math.abs(queen.y - king.y)) return true;
+  return false;
 }
 
 /**
@@ -371,7 +373,7 @@ function sortByAsc(/* arr */) {
 function shuffleChar(str, iterations) {
   let result = str;
   let iter = iterations;
-  let step = 0; // считаю количество итераций, прежде чем результат сравняется с исходником, чтобы исключить повторные прогоны по кругу с к такому же результату
+  let step = 0;
   while (iter > 0) {
     step += 1;
     let left = '';
@@ -388,7 +390,7 @@ function shuffleChar(str, iterations) {
     }
     result = left + right;
     if (result === str) {
-      iter = iterations % step; // убираю лишние итерации, которые приведут к исходной строке
+      iter = iterations % step;
     } else {
       iter -= 1;
     }
